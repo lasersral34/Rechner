@@ -37,7 +37,7 @@ public class Main
         {
             if(command.getCommand().equals(e[0]))
             {
-                command.fct(e, userinfo);
+                useFctResponse(command.fct(e, userinfo));
                 
                 b = true;
                 break;
@@ -53,6 +53,10 @@ public class Main
         {
             case OK:
                 
+                break;
+                
+            case WARGS:
+            
                 break;
                 
             case ERROR:
