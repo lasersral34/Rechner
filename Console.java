@@ -43,6 +43,21 @@ public class Console
         System.out.println();
     }
     
+    public static void errwrite(String e)
+    {
+        System.err.print(e);
+    }
+    
+    public static void errwriteln(String e)
+    {
+        System.err.println(e);
+    }
+    
+    public static void errwriteln()
+    {
+        System.err.println();
+    }
+    
     public static String readln()
     { 
         try
