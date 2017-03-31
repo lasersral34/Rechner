@@ -9,7 +9,7 @@ public enum Commands
 {
     FAKULTÄT("fakultaet", "Fakultätiviert eine Zahl.")
     {
-        public void fct(String[] args, UserInfo userinfo)
+        public FctResponse fct(String[] args, UserInfo userinfo)
         {
             if(args.length == 3)
             {
@@ -27,10 +27,12 @@ public enum Commands
                     break;
                 }
                 Console.writeln("Das Ergebnis beträgt: " + e);
+                return FctResponse.OK;
             }
             else
             {
                 Console.writeln("Falsche Anzahl der Argumente!");
+                return FctResponse.WARGS;
             }
         }
     },
@@ -38,7 +40,7 @@ public enum Commands
     
     CALC("=", "Löst einfache mathematische Rechnungen.")
     {
-        public void fct(String[] args, UserInfo userinfo)
+        public FctResponse fct(String[] args, UserInfo userinfo)
         {
             double e = Double.NaN;
             if(args.length == 4)
@@ -71,6 +73,7 @@ public enum Commands
                 }
                 
                 Console.writeln(args[1] + " " + args[2] + " " + args[3] + " = " + e);
+                return FctResponse.OK;
             }
             else if(args.length == 3)
             {
@@ -82,31 +85,35 @@ public enum Commands
                 }
                 
                 Console.writeln(args[1] + " " + args[2]  + " = " + e);
+                return FctResponse.OK;
             }
             else
             {
                 Console.writeln("Falsche Anzahl der Argumente!");
+                return FctResponse.WARGS;
             }
         }
     },
     
     FIBONACCI_ZAHL("fibonaccizahl", "Gibt die Fibonaccizahl an entsprechender Stelle an.")
     {
-        public void fct(String[] args, UserInfo userinfo)
+        public FctResponse fct(String[] args, UserInfo userinfo)
         {
             if(args.length == 2)
             {
                 Console.writeln("Die " + Rechner.FibonacciZahl(Long.parseLong(args[1])) + ". Fibonacci-Zahl ist " + args[1] + ".");
+                return FctResponse.OK;
             }
             else
             {
                 Console.writeln("Falsche Anzahl der Argumente!");
+                return FctResponse.WARGS;
             }
         }
     },
     SPEEDTEST("speedtest", "Speedtestiviert einen Befehl.")
     {
-        public void fct(String[] args, UserInfo userinfo)
+        public FctResponse fct(String[] args, UserInfo userinfo)
         {
             if(args.length > 1)
             {
@@ -131,22 +138,24 @@ public enum Commands
                     
                     Console.writeln();
                     Console.writeln("Es dauerte " + d + "ns.");
+                    return FctResponse.OK;
                 }
                 else
                 {
                     Console.writeln("Der Befehl \"" + args[1] + "\" wurde nicht gefunden.\nBenutze help für eine liste and Befehlen.");
+                    return FctResponse.ERROR;
                 }
             }
             else
             {
-                Console.writeln("Falsche Anzahl der Argumente!");
+                return FctResponse.WARGS;
             }
         }
     },
     
     REPEAT("repeat", "Wiederholt einen Command")
     {
-        public void fct(String[] args, UserInfo userinfo)
+        public FctResponse fct(String[] args, UserInfo userinfo)
         {
             if(args.length > 2)
             {
@@ -160,53 +169,57 @@ public enum Commands
                     {
                         cmd.fct(nargs, userinfo);
                     }
+                    return FctResponse.OK;
                 }
                 else
                 {
                     Console.writeln("Der Befehl \"" + args[2] + "\" wurde nicht gefunden.\nBenutze help für eine liste and Befehlen.");
+                    return FctResponse.ERROR;
                 }
             }
             else
             {
-                Console.writeln("Falsche Anzahl der Argumente!");
+                return FctResponse.WARGS;
             }
         }
     },
     
     CLEAR("clear", "Löscht den Text auf der Konsole.")
     {
-        public void fct(String[] args, UserInfo userinfo)
+        public FctResponse fct(String[] args, UserInfo userinfo)
         {
             if(args.length == 1)
             {
                 Console.clear();
+                return FctResponse.OK;
             }
             else
             {
-                Console.writeln("Falsche Anzahl der Argumente!");
+                return FctResponse.WARGS;
             }
         }
     },
     
     LOGOUT("logout", "Meldet Benutzer ab.")
     {
-        public void fct(String[] args, UserInfo userinfo)
+        public FctResponse fct(String[] args, UserInfo userinfo)
         {
             if(args.length == 1)
             {
                 Console.writeln("Auf Wiedersehen " + userinfo.getUser() + "!");
                 //logout
+                return FctResponse.ERROR;
             }
             else
             {
-                Console.writeln("Falsche Anzahl der Argumente!");
+                return FctResponse.WARGS;
             }
         }
     },
     
     RESTART("restart", "Startet Anwendung neu.")
     {
-        public void fct(String[] args, UserInfo userinfo)
+        public FctResponse fct(String[] args, UserInfo userinfo)
         {
             if(args.length == 1)
             {
@@ -225,40 +238,48 @@ public enum Commands
                 {}
                 //logout
                 Console.init();
+                return FctResponse.ERROR;
             }
             else
             {
-                Console.writeln("Falsche Anzahl der Argumente!");
+                return FctResponse.WARGS;
             }
         }
     },
     
     SHUTDOWN("shutdown", "Fährt Anwendung herunter.")
     {
-        public void fct(String[] args, UserInfo userinfo)
+        public FctResponse fct(String[] args, UserInfo userinfo)
         {
             if(args.length == 1)
             {
                 //shutdown
+                return FctResponse.ERROR;
             }
             else
             {
-                Console.writeln("Falsche Anzahl der Argumente!");
+                return FctResponse.WARGS;
             }
         }
     },
     
     HELP("help", "Gibt eine Liste aller Commands oder einen Command mit seiner Beschreibung an.")
     {
-        public void fct(String[] args, UserInfo userinfo)
+        public FctResponse fct(String[] args, UserInfo userinfo)
         {
             if(args.length == 2)
             {
                 Commands cmd = Parse(args[1]);
                 if(cmd!=null)
+                {
                     Console.writeln(cmd.getCommand() + ": " + cmd.getDesrciption());
+                    return FctResponse.OK;
+                }
                 else
+                {
                     Console.writeln("Command nicht gefunden. Benutze help um dir eine Liste aller Commands anzeigen zu lassen.");
+                    return FctResponse.ERROR;
+                }
             }
             else if(args.length == 1)
             {
@@ -268,21 +289,22 @@ public enum Commands
                 {
                     
                     Console.writeln("[" + (i+1) + "] " + cmds[i].getCommand());
+                    return FctResponse.OK;
                 }
             }
-            else
-            {
-                Console.writeln("Falsche Anzahl der Argumente!");
-            }
+            return FctResponse.WARGS;
         }
     },
     
     SAMARITAN("samaritan", "HILFE! DIE RUSSEN KOMMEN!")
     {
-        public void fct(String[] args, UserInfo userinfo)
+        public FctResponse fct(String[] args, UserInfo userinfo)
         {
             if(userinfo.getPcname() == "TheMachine")
+            {
                     throw new RuntimeException("ENEMY DETECTED");
+            }
+            return FctResponse.OK;
         }
     };
 
@@ -305,7 +327,7 @@ public enum Commands
         return description;
     }
     
-    public abstract void fct(String[] args, UserInfo userinfo);
+    public abstract FctResponse fct(String[] args, UserInfo userinfo);
     
     public static Commands Parse(String cmdname)
     {

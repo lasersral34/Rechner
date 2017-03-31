@@ -9,6 +9,7 @@ public enum FctResponse
 {
     OK,
     ERROR,
+    WARGS,
     
     LOGOUT,
     SHUTDOWN;
