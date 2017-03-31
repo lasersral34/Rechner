@@ -9,7 +9,7 @@ public enum Users
 {
     USER01("user01"),
     ADMIN("admin", "123456"),
-    TESTUSER("testuser","testpw");
+    TESTUSER("u");
     
     private final String name;
     private final int password;
