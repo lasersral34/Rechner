@@ -56,11 +56,11 @@ public class Main
                 break;
                 
             case WARGS:
-                Console.errwriteln("Falsche Anzahl an Argumenten!");
+                Console.writeln("[ERROR]\tFalsche Anzahl an Argumenten!");
                 break;
                 
             case ERROR:
-                Console.errwriteln("ERROR");
+                Console.writeln("[ERROR]\tERROR");
                 break;
                 
             case LOGOUT:
