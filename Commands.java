@@ -7,37 +7,6 @@ import java.util.concurrent.TimeUnit;
  */
 public enum Commands
 {
-    FAKULTÄT("fakultaet", "Fakultätiviert eine Zahl.")
-    {
-        public FctResponse fct(String[] args, UserInfo userinfo)
-        {
-            if(args.length == 3)
-            {
-                long e = 0;
-                switch(args[1])
-                {
-                    case "iterativfor":
-                    e = Rechner.FakultaetiterativFOR(Long.parseLong(args[2]));
-                    break;
-                    case "iterativwhile":
-                    e = Rechner.FakultaetiterativWHILE(Long.parseLong(args[2]));
-                    break;
-                    case "rekursiv":
-                    e = Rechner.Fakultaetrekursiv(Long.parseLong(args[2]));
-                    break;
-                }
-                Console.writeln("Das Ergebnis beträgt: " + e);
-                return FctResponse.OK;
-            }
-            else
-            {
-                Console.writeln("Falsche Anzahl der Argumente!");
-                return FctResponse.WARGS;
-            }
-        }
-    },
-    
-    
     CALC("=", "Löst einfache mathematische Rechnungen.")
     {
         public FctResponse fct(String[] args, UserInfo userinfo)
@@ -95,6 +64,37 @@ public enum Commands
         }
     },
     
+    FAKULTÄT("fakultaet", "Fakultätiviert eine Zahl.")
+    {
+        public FctResponse fct(String[] args, UserInfo userinfo)
+        {
+            if(args.length == 3)
+            {
+                long e = 0;
+                switch(args[1])
+                {
+                    case "iterativfor":
+                    e = Rechner.FakultaetiterativFOR(Long.parseLong(args[2]));
+                    break;
+                    case "iterativwhile":
+                    e = Rechner.FakultaetiterativWHILE(Long.parseLong(args[2]));
+                    break;
+                    case "rekursiv":
+                    e = Rechner.Fakultaetrekursiv(Long.parseLong(args[2]));
+                    break;
+                }
+                Console.writeln("Das Ergebnis beträgt: " + e);
+                return FctResponse.OK;
+            }
+            else
+            {
+                Console.writeln("Falsche Anzahl der Argumente!");
+                return FctResponse.WARGS;
+            }
+        }
+    },
+    
+    
     FIBONACCI_ZAHL("fibonaccizahl", "Gibt die Fibonaccizahl an entsprechender Stelle an.")
     {
         public FctResponse fct(String[] args, UserInfo userinfo)
@@ -111,6 +111,9 @@ public enum Commands
             }
         }
     },
+    
+    
+    
     SPEEDTEST("speedtest", "Speedtestiviert einen Befehl.")
     {
         public FctResponse fct(String[] args, UserInfo userinfo)
@@ -183,6 +186,8 @@ public enum Commands
             }
         }
     },
+    
+    
     
     CLEAR("clear", "Löscht den Text auf der Konsole.")
     {
@@ -294,6 +299,8 @@ public enum Commands
             return FctResponse.WARGS;
         }
     },
+    
+    
     
     SAMARITAN("samaritan", "HILFE! DIE RUSSEN KOMMEN!")
     {
