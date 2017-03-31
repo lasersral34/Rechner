@@ -195,7 +195,7 @@ public enum Commands
             if(args.length == 1)
             {
                 Console.writeln("Auf Wiedersehen " + userinfo.getUser() + "!");
-                userinfo.logout();
+                //logout
             }
             else
             {
@@ -223,7 +223,7 @@ public enum Commands
                     }
                 catch(Exception e) 
                 {}
-                userinfo.logout();
+                //logout
                 Console.init();
             }
             else
@@ -267,7 +267,7 @@ public enum Commands
                 for(int i = 0; i < cmds.length; i++)
                 {
                     
-                    Console.writeln("[" + (i+1) + "]\t" + cmds[i].getCommand());
+                    Console.writeln("[" + (i+1) + "] " + cmds[i].getCommand());
                 }
             }
             else
