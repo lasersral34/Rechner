@@ -8,7 +8,6 @@ public class UserInfo
 {
     private final String user;
     private final String pcname;
-    private boolean loggedin;
    
     public UserInfo(String user, String pcname)
     {
@@ -24,20 +23,5 @@ public class UserInfo
     public String getPcname()
     {
         return pcname;
-    }
-    
-    public boolean isLoogedIn()
-    {
-        return loggedin;
-    }
-    
-    public void login()
-    {
-        loggedin = true;
-    }
-    
-    public void logout()
-    {
-        loggedin = false;
     }
 }

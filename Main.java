@@ -19,7 +19,7 @@ public class Main
         while(true)
         {
             //anmeldung richtig machen
-            while(userinfo == null /* || !userinfo.isLoogedIn()*/)
+            while(userinfo == null)
             {
                 login();
             }
