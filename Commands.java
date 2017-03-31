@@ -267,7 +267,7 @@ public enum Commands
                 for(int i = 0; i < cmds.length; i++)
                 {
                     
-                    Console.writeln("[" + (i+1) + "] " + cmds[i].getCommand());
+                    Console.writeln("[" + (i+1) + "]\t" + cmds[i].getCommand());
                 }
             }
             else
