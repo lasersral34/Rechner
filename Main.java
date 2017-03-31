@@ -47,6 +47,38 @@ public class Main
             Console.writeln("Command nicht gefunden. Benutze help um dir eine Liste aller Commands anzeigen zu lassen.");
     }
     
+    private static void useFctResponse(FctResponse fctresponse)
+    {
+        switch(fctresponse)
+        {
+            case OK:
+                
+                break;
+                
+            case ERROR:
+                
+                break;
+                
+            case LOGOUT:
+                logout();
+                break;
+                
+            case SHUTDOWN:
+                shutdown();
+                break;
+        }
+    }
+    
+    private static void logout()
+    {
+        
+    }
+    
+    private static void shutdown()
+    {
+        
+    }
+    
     private static void login()
     {
         Console.write("name: ");
