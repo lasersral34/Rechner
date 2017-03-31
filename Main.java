@@ -10,7 +10,7 @@ public class Main
     
     public static String pcname = "TheMachine";
     
-    private static UserInfo userinfo;
+    private static User activeUser;
     //userinfo = Users.getUserInfo("admin", "123456");
     
     public static void main()
@@ -19,7 +19,7 @@ public class Main
         while(true)
         {
             //anmeldung richtig machen
-            while(userinfo == null)
+            while(activeUser == null)
             {
                 login();
             }
@@ -29,7 +29,7 @@ public class Main
 
     private static void menue()
     {
-        Console.write(userinfo.getUser() + "@" + userinfo.getPcname() + " ~ $ ");
+        Console.write(activeUser.getName() + "@" + pcname + " ~ $ ");
         String[] e = Console.readln().toLowerCase().split(" ");
         
         boolean b = false; 
@@ -37,7 +37,7 @@ public class Main
         {
             if(command.getCommand().equals(e[0]))
             {
-                useFctResponse(command.fct(e, userinfo));
+                useFctResponse(command.fct(e, activeUser.getUserInfo(pcname)));
                 
                 b = true;
                 break;
@@ -83,9 +83,9 @@ public class Main
     
     private static void logout()
     {
-        Console.writeln("Auf Wiedersehen " + userinfo.getUser() + "!");
+        Console.writeln("Auf Wiedersehen " + activeUser.getName() + "!");
         Console.writeln();
-        userinfo = null;
+        activeUser = null;
     }
     
     private static void restart()
@@ -114,18 +114,24 @@ public class Main
     
     private static void login()
     {
+        try
+        {
+            activeUser = User.getUser();
+        }
+        catch(Exception e) {}
         Console.write("name: ");
         String name = Console.readln();
         Console.write("password: ");
         String pw = Console.readln();
         
+        /*
         if(pw.equals(""))
-            userinfo = Users.getUserInfo(name);
+            userinfo = User.getUserInfo(name);
         else
-            userinfo = Users.getUserInfo(name, pw);
+            userinfo = User.getUserInfo(name, pw);
         if(userinfo == null)
             Console.writeln("Anmeldung nicht erfolgreich. Anmeldedaten überprüfen!");
         else
-            Console.clear();
+            Console.clear();*/
     }
 }

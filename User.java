@@ -12,9 +12,9 @@ import java.io.FileOutputStream;
 public class User
 {
     private final Path path;
-    private String name;
-    private boolean pwexists;
-    private int password;
+    private final String name;
+    private final boolean pwexists;
+    private final int password;
     
     /**
      * Constructor for objects of class User
@@ -76,10 +76,26 @@ public class User
                     (data[pos+1] & 0xFF) << 16 |
                     (data[pos] & 0xFF) << 24;
         pos+=4;
-        
-        Console.writeln(name);
-        Console.writeln(pwexists+"");
-        Console.writeln(password+"");
         return new User(path, name, pwexists, password);
+    }
+    
+    public UserInfo getUserInfo(String pcname)
+    {
+        return new UserInfo(name, pcname);
+    }
+    
+    private static int hash(String name, String password)
+    {
+        return (name+password).hashCode();
+    }
+    
+    public boolean getPwExists()
+    {
+        return pwexists;
+    }
+    
+    public String getName()
+    {
+        return name;
     }
 }
