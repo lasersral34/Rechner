@@ -70,12 +70,16 @@ public class Main
             case SHUTDOWN:
                 shutdown();
                 break;
+                
+            default:
+            
+                break;
         }
     }
     
     private static void logout()
     {
-        
+        userinfo = null;
     }
     
     private static void shutdown()
