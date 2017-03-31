@@ -67,6 +67,10 @@ public class Main
                 logout();
                 break;
                 
+            case RESTART:
+                restart();
+                break;
+                
             case SHUTDOWN:
                 shutdown();
                 break;
@@ -79,7 +83,28 @@ public class Main
     
     private static void logout()
     {
+        Console.writeln("Auf Wiedersehen " + userinfo.getUser() + "!");
+        Console.writeln();
         userinfo = null;
+    }
+    
+    private static void restart()
+    {
+        Console.clear();
+        Console.write("restarting");
+        try
+        {
+            Thread.sleep(500);
+            for(int i = 0; i < 3; i++)
+            {
+                Console.write(".");
+                Thread.sleep(1000);
+            }
+            }
+        catch(Exception e) 
+        {}
+        logout();
+        Console.init();
     }
     
     private static void shutdown()

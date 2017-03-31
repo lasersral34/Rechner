@@ -12,5 +12,6 @@ public enum FctResponse
     WARGS,
     
     LOGOUT,
+    RESTART,
     SHUTDOWN;
 }

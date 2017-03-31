@@ -211,9 +211,7 @@ public enum Commands
         {
             if(args.length == 1)
             {
-                Console.writeln("Auf Wiedersehen " + userinfo.getUser() + "!");
-                //logout
-                return FctResponse.ERROR;
+                return FctResponse.LOGOUT;
             }
             else
             {
@@ -228,22 +226,7 @@ public enum Commands
         {
             if(args.length == 1)
             {
-                Console.clear();
-                Console.write("rebooting");
-                try
-                {
-                    Thread.sleep(500);
-                    for(int i = 0; i < 3; i++)
-                    {
-                        Console.write(".");
-                        Thread.sleep(1000);
-                    }
-                    }
-                catch(Exception e) 
-                {}
-                //logout
-                Console.init();
-                return FctResponse.ERROR;
+                return FctResponse.RESTART;
             }
             else
             {
