@@ -287,10 +287,9 @@ public enum Commands
                 Commands[] cmds = Commands.values();
                 for(int i = 0; i < cmds.length; i++)
                 {
-                    
-                    Console.writeln("[" + (i+1) + "] " + cmds[i].getCommand());
-                    return FctResponse.OK;
+                    Console.writeln("[" + (i+1) + "]\t" + cmds[i].getCommand());
                 }
+                return FctResponse.OK;
             }
             return FctResponse.WARGS;
         }
