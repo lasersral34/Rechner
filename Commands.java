@@ -101,7 +101,7 @@ public enum Commands
         {
             if(args.length == 2)
             {
-                Console.writeln("Die " + Rechner.FibonacciZahl(Long.parseLong(args[1])) + ". Fibonacci-Zahl ist " + args[1] + ".");
+                Console.writeln("Die " + args[1] + ". Fibonacci-Zahl ist " + Rechner.FibonacciZahl(Long.parseLong(args[1])) + ".");
                 return FctResponse.OK;
             }
             else
