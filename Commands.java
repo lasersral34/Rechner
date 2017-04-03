@@ -307,7 +307,6 @@ public enum Commands
         {
             if(args.length == 1)
             {
-                //shutdown
                 return FctResponse.SHUTDOWN;
             }
             else

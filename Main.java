@@ -112,6 +112,7 @@ public class Main
     
     private static void shutdown()
     {
+        logout();
         System.exit(0);
     }
     
@@ -137,15 +138,5 @@ public class Main
         {
             Console.writeln("Benutzername existiert nicht!");
         }
-        
-        /*
-        if(pw.equals(""))
-            userinfo = User.getUserInfo(name);
-        else
-            userinfo = User.getUserInfo(name, pw);
-        if(userinfo == null)
-            Console.writeln("Anmeldung nicht erfolgreich. Anmeldedaten überprüfen!");
-        else
-            Console.clear();*/
     }
 }
