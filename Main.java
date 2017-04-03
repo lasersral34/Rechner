@@ -131,6 +131,7 @@ public class Main
             {
                 activeUser = User.getUser(name);
             }
+            Console.clear();
         }
         else
         {
