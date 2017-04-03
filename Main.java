@@ -127,12 +127,16 @@ public class Main
                 Console.write("password: ");
                 String pw = Console.readln();
                 activeUser = User.getUser(name, pw);
+                if(activeUser == null)
+                    Console.writeln("Passwort falsch!");
+                else
+                    Console.clear();
             }
             else
             {
                 activeUser = User.getUser(name);
+                Console.clear();
             }
-            Console.clear();
         }
         else
         {
