@@ -162,7 +162,7 @@ public class User
         File[] fileArray = fs.listFiles();
         
 
-        
+        for(File f : fileArray)
         {
             try
             {
