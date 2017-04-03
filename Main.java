@@ -18,7 +18,6 @@ public class Main
         Console.init();
         while(true)
         {
-            //anmeldung richtig machen
             while(activeUser == null)
             {
                 login();
@@ -55,8 +54,12 @@ public class Main
                 
                 break;
                 
-            case WARGS:
+            case WARGSC:
                 Console.writeln("[ERROR]\tFalsche Anzahl an Argumenten!");
+                break;
+                
+            case WARGS:
+                Console.writeln("[ERROR]\tFalsches Argument!");
                 break;
                 
             case ERROR:
@@ -109,20 +112,30 @@ public class Main
     
     private static void shutdown()
     {
-        
+        System.exit(0);
     }
     
     private static void login()
     {
-        try
-        {
-            activeUser = User.getUser();
-        }
-        catch(Exception e) {}
         Console.write("name: ");
         String name = Console.readln();
-        Console.write("password: ");
-        String pw = Console.readln();
+        if(User.userNameExists(name))
+        {
+            if(User.userHasPassword(name))
+            {
+                Console.write("password: ");
+                String pw = Console.readln();
+                activeUser = User.getUser(name, pw);
+            }
+            else
+            {
+                activeUser = User.getUser(name);
+            }
+        }
+        else
+        {
+            Console.writeln("Benutzername existiert nicht!");
+        }
         
         /*
         if(pw.equals(""))

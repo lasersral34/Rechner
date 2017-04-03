@@ -10,6 +10,7 @@ public enum FctResponse
     OK,
     ERROR,
     WARGS,
+    WARGSC,
     
     LOGOUT,
     RESTART,

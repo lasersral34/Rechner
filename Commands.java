@@ -59,7 +59,7 @@ public enum Commands
             else
             {
                 Console.writeln("Falsche Anzahl der Argumente!");
-                return FctResponse.WARGS;
+                return FctResponse.WARGSC;
             }
         }
     },
@@ -89,7 +89,7 @@ public enum Commands
             else
             {
                 Console.writeln("Falsche Anzahl der Argumente!");
-                return FctResponse.WARGS;
+                return FctResponse.WARGSC;
             }
         }
     },
@@ -107,7 +107,7 @@ public enum Commands
             else
             {
                 Console.writeln("Falsche Anzahl der Argumente!");
-                return FctResponse.WARGS;
+                return FctResponse.WARGSC;
             }
         }
     },
@@ -146,12 +146,12 @@ public enum Commands
                 else
                 {
                     Console.writeln("Der Befehl \"" + args[1] + "\" wurde nicht gefunden.\nBenutze help für eine liste and Befehlen.");
-                    return FctResponse.ERROR;
+                    return FctResponse.WARGS;
                 }
             }
             else
             {
-                return FctResponse.WARGS;
+                return FctResponse.WARGSC;
             }
         }
     },
@@ -177,12 +177,12 @@ public enum Commands
                 else
                 {
                     Console.writeln("Der Befehl \"" + args[2] + "\" wurde nicht gefunden.\nBenutze help für eine liste and Befehlen.");
-                    return FctResponse.ERROR;
+                    return FctResponse.WARGS;
                 }
             }
             else
             {
-                return FctResponse.WARGS;
+                return FctResponse.WARGSC;
             }
         }
     },
@@ -200,8 +200,74 @@ public enum Commands
             }
             else
             {
-                return FctResponse.WARGS;
+                return FctResponse.WARGSC;
             }
+        }
+    },
+    
+    USER("user", "Zeigt eine Liste der Benutzer an, löscht Benutzer oder fügt neue hinzu.")
+    {
+        public FctResponse fct(String[] args, UserInfo userinfo)
+        {
+            if(args.length == 3 || args.length == 4)
+            {
+                if(args[1].equals("delete"))
+                {
+                    if(args.length == 4)
+                    {
+                        return FctResponse.WARGSC;
+                    }
+                    if(User.userNameExists(args[2]))
+                    {
+                        Console.writeln("Benutzer \"" + args[2] + "\" wird gelöscht.");
+                        User.delete(args[2]);
+                    }
+                    else
+                    {
+                        Console.writeln("Benutzer \"" + args[2] + "\" wurde nicht gefunden.");
+                    }
+                }
+                else if(args[1].equals("create"))
+                {
+                    if(!User.userNameExists(args[2]))
+                    {
+                        Console.writeln("Benutzer \"" + args[2] + "\" wird erzeugt.");
+                        if(args.length == 4)
+                            User.create(args[2],args[3]);
+                        else
+                            User.create(args[2]);
+                    }
+                    else
+                    {
+                        Console.writeln("Den Benutzer \"" + args[2] + "\" gibt es bereits.");
+                    }
+                }
+                else
+                {
+                    return FctResponse.WARGS;
+                }
+            }
+            else if(args.length == 2)
+            {
+                if(args[1].equals("list"))
+                {
+                    Console.writeln("Folgende Benutzer sind vorhanden:");
+                    String[] names = User.getUserNames();
+                    for(int i = 0; i < names.length; i++)
+                    {
+                        Console.writeln("[" + (i+1) + "]\t" + names[i]);
+                    }
+                }
+                else
+                {
+                    return FctResponse.WARGS;
+                }
+            }
+            else
+            {
+                return FctResponse.WARGSC;
+            }
+            return FctResponse.OK;
         }
     },
     
@@ -215,7 +281,7 @@ public enum Commands
             }
             else
             {
-                return FctResponse.WARGS;
+                return FctResponse.WARGSC;
             }
         }
     },
@@ -230,7 +296,7 @@ public enum Commands
             }
             else
             {
-                return FctResponse.WARGS;
+                return FctResponse.WARGSC;
             }
         }
     },
@@ -242,11 +308,11 @@ public enum Commands
             if(args.length == 1)
             {
                 //shutdown
-                return FctResponse.ERROR;
+                return FctResponse.SHUTDOWN;
             }
             else
             {
-                return FctResponse.WARGS;
+                return FctResponse.WARGSC;
             }
         }
     },
@@ -266,7 +332,7 @@ public enum Commands
                 else
                 {
                     Console.writeln("Command nicht gefunden. Benutze help um dir eine Liste aller Commands anzeigen zu lassen.");
-                    return FctResponse.ERROR;
+                    return FctResponse.WARGS;
                 }
             }
             else if(args.length == 1)
@@ -279,7 +345,7 @@ public enum Commands
                 }
                 return FctResponse.OK;
             }
-            return FctResponse.WARGS;
+            return FctResponse.WARGSC;
         }
     },
     
