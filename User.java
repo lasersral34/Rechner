@@ -161,7 +161,8 @@ public class User
         File fs = new File("users");
         File[] fileArray = fs.listFiles();
         
-        for(File f : fileArray)
+
+        
         {
             try
             {
