@@ -8,7 +8,7 @@ public class Main
 {
     public static String version = "0.0.1";
     
-    public static String pcname = "TheMachine";
+    public static String pcname = "MacBookAir";
     
     private static User activeUser;
     //userinfo = Users.getUserInfo("admin", "123456");
@@ -20,7 +20,15 @@ public class Main
         {
             while(activeUser == null)
             {
-                login();
+                if(User.getUserNames().length == 0)
+                {
+                    Console.writeln("Keine Benutzer vorhanden.");
+                    System.exit(0);
+                }
+                else
+                {
+                    login();
+                }
             }
             menue();
         }

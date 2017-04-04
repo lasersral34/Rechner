@@ -64,6 +64,22 @@ public enum Commands
         }
     },
     
+    SUM("sum", "")
+    {
+        public FctResponse fct(String[] args, UserInfo userinfo)
+        {
+            if(args.length == 2)
+            {
+                
+            }
+            else
+            {
+                return FctResponse.WARGSC;
+            }
+            return FctResponse.OK;
+        }
+    },
+    
     FAKULTÄT("fakultaet", "Fakultätiviert eine Zahl.")
     {
         public FctResponse fct(String[] args, UserInfo userinfo)
@@ -99,16 +115,28 @@ public enum Commands
     {
         public FctResponse fct(String[] args, UserInfo userinfo)
         {
-            if(args.length == 2)
+            if(args.length == 2 || args.length == 3)
             {
-                Console.writeln("Die " + args[1] + ". Fibonacci-Zahl ist " + Rechner.FibonacciZahl(Long.parseLong(args[1])) + ".");
-                return FctResponse.OK;
+                switch(args[1])
+                {
+                    case "list":
+                        long[] ns = Rechner.FibonacciZahlList(Long.parseLong(args[2]));
+                        Console.writeln("Die ersten " + ns.length + " Fibonaccizahlen lauten:");
+                        for(int i = 0; i < ns.length; i++)
+                            Console.writeln("[" + (i+1) + "]\t" + ns[i]);
+                        break;
+                    
+                    default:
+                        Console.writeln("Die " + args[1] + ". Fibonacci-Zahl ist " + Rechner.FibonacciZahl(Long.parseLong(args[1])) + ".");
+                        break;
+                }
             }
             else
             {
                 Console.writeln("Falsche Anzahl der Argumente!");
                 return FctResponse.WARGSC;
             }
+            return FctResponse.OK;
         }
     },
     

@@ -1,4 +1,5 @@
 import java.util.concurrent.TimeUnit;
+import java.util.*;
 
 //import java.util.Scanner;
 
@@ -51,5 +52,27 @@ public class Rechner
             a += b;
         }
         return a;
+    }
+    
+    public static long Sum(long n)
+    {
+        return ((n+1)*n)/2;
+    }
+    
+    public static long[] FibonacciZahlList(long n)
+    {
+        long[] numbers = new long[(int)n];
+        numbers[0] = 1;
+        numbers[1] = 1;
+        long a = 1, b = 1;
+        for(int i = 0; i < (n - 2); i++)
+        {
+            long t = a;
+            a = b;
+            b = t;
+            a += b;
+            numbers[2+i] = a;
+        }
+        return numbers;
     }
 }
